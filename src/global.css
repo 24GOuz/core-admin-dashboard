@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* a {
+    text-decoration: none;
+  } */
+  
+  .mantine-NavLink-children {
+    padding: 0 !important;
+  }
+  
+  .m_5df29311 {
+    padding: 0 32px 16px 32px;
+  }
+  
+  .m_b5489c3c {
+    padding: 0 14px 0 32px;
+  }
+  
+  .m_8983817 {
+    min-height: auto;
+  }
+  
+  .MRT_TableDetailPanel-module_root__vQAlM {
+    height: 0 !important;
+  }
+  .m_4e7aa4ef {
+    background-color: white;
+  }
+  

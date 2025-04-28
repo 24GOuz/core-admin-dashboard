@@ -1,0 +1,49 @@
+.root {
+  &[data-variant='primary'] {
+    background: var(--mantine-color-primary-6);
+    color: var(--mantine-color-white);
+    border-width: 0;
+  }
+
+  &[data-variant='primary']:hover {
+    background: var(--mantine-color-primary-7);
+    color: var(--mantine-color-white);
+    border-width: 0;
+  }
+
+  &[data-variant='secondry'] {
+    background: var(--mantine-color-neutral-1);
+    color: var(--mantine-color-neutral-6);
+    border-width: 0;
+  }
+
+  &[data-variant='secondry']:hover {
+    background: var(--mantine-color-neutral-2);
+    color: var(--mantine-color-neutral-6);
+    border-width: 0;
+  }
+
+  &[data-variant='tertiary'] {
+    background: var(--mantine-color-white);
+    color: var(--mantine-color-neutral-6);
+    border-width: 0;
+  }
+
+  &[data-variant='tertiary']:hover {
+    background: var(--mantine-color-neutral-1);
+    color: var(--mantine-color-neutral-6);
+    border-width: 0;
+  }
+
+  &[data-disabled='true'] {
+    background: var(--mantine-color-neutral-1);
+    color: var(--mantine-color-neutral-4);
+    border-width: 0;
+  }
+
+  &[data-disabled='true']:hover {
+    background: var(--mantine-color-neutral-1);
+    color: var(--mantine-color-neutral-4);
+    border-width: 0;
+  }
+}

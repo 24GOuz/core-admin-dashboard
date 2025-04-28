@@ -1,0 +1,19 @@
+.tab {
+  padding: 30px 10px;
+  position: relative;
+  border-bottom: 1px solid var(--mantine-color-neutral-3);
+  color: var(--mantine-color-neutral-6);
+  flex: 0 0 auto;
+  font-weight: 600;
+
+  &[data-active] {
+    z-index: 1;
+    border-bottom-width: 3px;
+    border-color: var(--mantine-color-primary-6);
+    color: var(--mantine-color-primary-6);
+  }
+}
+
+.list {
+  color: var(--mantine-color-neutral-6);
+}
