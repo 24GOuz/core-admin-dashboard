@@ -178,70 +178,68 @@ export const UsersPage = () => {
 
 
     return (
-        <MainLayout>
-            <Stack gap={16}>
-                <Titles title="users" open={create} />
-                <MTable
-                    data={users}
-                    columns={columns}
-                    editM={handleEdit}
-                    deleteM={handleDelete}
-                    onCreate={handleCreate}
-                />
+        <Stack gap={16}>
+            <Titles title="users" open={create} />
+            <MTable
+                data={users}
+                columns={columns}
+                editM={handleEdit}
+                deleteM={handleDelete}
+                onCreate={handleCreate}
+            />
 
-                <Modal
-                    opened={opened}
-                    onClose={close}
-                    title={modalType === 'delete' ? 'Delete User' : 'User Details'}
-                >
-                    {modalType === 'delete' ? (
-                        <Stack>
-                            <Text>Are you sure you want to delete {selectedUser?.name}?</Text>
-                            <Group justify="flex-end" mt="md">
-                                <Button variant="default" onClick={close}>
-                                    Cancel
-                                </Button>
-                                <Button color="red" onClick={handleDeleteConfirm}>
-                                    Delete
-                                </Button>
-                            </Group>
-                        </Stack>
-                    ) : (
-                        <Stack>
-                            <TextInput
-                                label="Name"
-                                value={formData.name || ''}
-                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            />
-                            <TextInput
-                                label="Email"
-                                value={formData.email || ''}
-                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            />
-                            <Select
-                                label="Role"
-                                value={formData.role || ''}
-                                onChange={(value) => setFormData({ ...formData, role: value || '' })}
-                                data={['Admin', 'User', 'Editor']}
-                            />
-                            <Select
-                                label="Status"
-                                value={formData.status || ''}
-                                onChange={(value) => setFormData({ ...formData, status: value as 'Active' | 'Inactive' })}
-                                data={['Active', 'Inactive']}
-                            />
-                            <Group justify="flex-end" mt="md">
-                                <Button variant="default" onClick={close}>
-                                    Cancel
-                                </Button>
-                                <Button onClick={handleSave}>
-                                    Save
-                                </Button>
-                            </Group>
-                        </Stack>
-                    )}
-                </Modal>
-            </Stack>
-        </MainLayout>
+            <Modal
+                opened={opened}
+                onClose={close}
+                title={modalType === 'delete' ? 'Delete User' : 'User Details'}
+            >
+                {modalType === 'delete' ? (
+                    <Stack>
+                        <Text>Are you sure you want to delete {selectedUser?.name}?</Text>
+                        <Group justify="flex-end" mt="md">
+                            <Button variant="default" onClick={close}>
+                                Cancel
+                            </Button>
+                            <Button color="red" onClick={handleDeleteConfirm}>
+                                Delete
+                            </Button>
+                        </Group>
+                    </Stack>
+                ) : (
+                    <Stack>
+                        <TextInput
+                            label="Name"
+                            value={formData.name || ''}
+                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        />
+                        <TextInput
+                            label="Email"
+                            value={formData.email || ''}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        />
+                        <Select
+                            label="Role"
+                            value={formData.role || ''}
+                            onChange={(value) => setFormData({ ...formData, role: value || '' })}
+                            data={['Admin', 'User', 'Editor']}
+                        />
+                        <Select
+                            label="Status"
+                            value={formData.status || ''}
+                            onChange={(value) => setFormData({ ...formData, status: value as 'Active' | 'Inactive' })}
+                            data={['Active', 'Inactive']}
+                        />
+                        <Group justify="flex-end" mt="md">
+                            <Button variant="default" onClick={close}>
+                                Cancel
+                            </Button>
+                            <Button onClick={handleSave}>
+                                Save
+                            </Button>
+                        </Group>
+                    </Stack>
+                )}
+            </Modal>
+        </Stack>
     )
 }
