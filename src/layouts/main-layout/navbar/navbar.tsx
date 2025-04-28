@@ -12,7 +12,7 @@ export const Navbar = () => {
         {
             label: 'Dashboard',
             icon: <FaHome size={20} />,
-            path: '/'
+            path: '/dashboard'
         },
         {
             label: 'Categories',
