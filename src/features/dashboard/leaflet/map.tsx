@@ -25,7 +25,6 @@ const MapClickHandler = ({ onMapClick }: { onMapClick: (lat: number, lng: number
     return null;
 };
 
-// Create a custom GPS marker icon using a React Icon
 const gpsIcon = L.divIcon({
     html: ReactDOMServer.renderToString(<HiLocationMarker style={{ color: 'red', fontSize: '34px', background: 'none' }} />),
     iconAnchor: [12, 24],
