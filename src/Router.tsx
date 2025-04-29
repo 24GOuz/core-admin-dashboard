@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LoginPage from './pages/auth';
 import { UsersPage } from './pages/users';
-import { MainLayout } from './layouts/main-layout/main-layout';
+import { MainLayout } from './shared/layouts/main-layout/main-layout';
 import { Outlet } from 'react-router-dom';
 
 const router = createBrowserRouter([

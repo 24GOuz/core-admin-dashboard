@@ -40,16 +40,12 @@ export const MTable = <TData extends MRT_RowData>({
                 enableColumnFilters={true}
                 enableHiding={true}
                 enableDensityToggle={true}
+                enableRowActions={true}
                 mantineTableBodyRowProps={({ row }) => ({
                     onClick: () => {
                         if (goTo !== undefined) {
                             goTo(row.original.id)
                         }
-                    },
-                    style: {
-                        backgroundColor:
-                            row.index % 2 === 0 ? 'white' : 'var(--mantine-color-gray-1)',
-                        height: '58px',
                     },
                 })}
                 initialState={{
@@ -63,6 +59,7 @@ export const MTable = <TData extends MRT_RowData>({
                 mantineTableProps={{
                     highlightOnHover: true,
                     withColumnBorders: true,
+                    striped: true,
                 }}
                 mantineTableHeadCellProps={{
                     style: {
@@ -87,11 +84,11 @@ export const MTable = <TData extends MRT_RowData>({
                 }}
                 renderRowActions={({ row }) => (
                     <Flex>
-                        {editM && (
+                        {true && (
                             <Button
                                 variant="transparent"
                                 p={0}
-                                onClick={() => editM(row.original.id)}
+                                // onClick={() => editM(row.original.id)}
                             >
                                 <HiOutlinePencil size={24} color="#D97706" />
                             </Button>
@@ -108,13 +105,13 @@ export const MTable = <TData extends MRT_RowData>({
                         )}
                     </Flex>
                 )}
+
                 positionActionsColumn="last"
                 mantinePaperProps={{
+                    shadow: 'none',
                     style: {
-                        display: 'flex',
-                        flexDirection: 'column',
-                        height: 'calc(100vh - 180px)',
-                        borderRadius: '12px',
+                        borderRadius: '0',
+                        border: '1px dashed #e0e0e0',
                     },
                 }}
                 mantineTableContainerProps={{ style: { flexGrow: '1' } }}

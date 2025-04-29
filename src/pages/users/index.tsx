@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { MainLayout } from '@/layouts/main-layout/main-layout'
 import { MTable } from '@/components/m-table/m-table'
 import { Button, Group, Modal, Stack, TextInput, Select, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
