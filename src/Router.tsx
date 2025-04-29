@@ -3,6 +3,7 @@ import LoginPage from './pages/auth';
 import { UsersPage } from './pages/users';
 import { MainLayout } from './shared/layouts/main-layout/main-layout';
 import { Outlet } from 'react-router-dom';
+import { DashboardPage } from './pages/dashboard';
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/dashboard',
-        element: <></>
+        element: <DashboardPage />
       },
       {
         path: '/users',
