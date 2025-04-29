@@ -43,7 +43,7 @@ export const LoginForm = () => {
             if (values.phone && values.password) {
                 // Simulating successful login
                 localStorage.setItem('token', 'dummy_token')
-                navigate('/users')
+                navigate('/dashboard')
             } else {
                 throw new Error('Invalid credentials')
             }
