@@ -2,6 +2,8 @@ import { MRT_ColumnDef } from 'mantine-react-table'
 import { useMemo } from 'react'
 import { MTable } from '@/components/m-table/m-table'
 import { openModal } from '@mantine/modals'
+import { Edit } from './edit'
+import { DeleteModal } from '@/components/delete-modal/delete-modal'
 
 export const CategoryContent = () => {
 
@@ -50,14 +52,14 @@ export const CategoryContent = () => {
 
     const editM = (id: number) => {
         openModal({
-            children: <div>Edit</div>,
+            children: <Edit id={id} />,
             title: 'Edit',
         })
     }
 
     const deleteM = (id: number) => {
         openModal({
-            children: <div>Delete</div>,
+            children: <DeleteModal id={id} label={'Delete'} onDelete={() => { }} />,
             title: 'Delete',
         })
     }

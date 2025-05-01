@@ -88,7 +88,7 @@ export const MTable = <TData extends MRT_RowData>({
                             <Button
                                 variant="transparent"
                                 p={0}
-                                // onClick={() => editM(row.original.id)}
+                                onClick={() => editM && editM(row.original.id)}
                             >
                                 <HiOutlinePencil size={24} color="#D97706" />
                             </Button>
