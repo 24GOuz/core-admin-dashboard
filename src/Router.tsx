@@ -4,6 +4,7 @@ import { UsersPage } from './pages/users';
 import { MainLayout } from './shared/layouts/main-layout/main-layout';
 import { Outlet } from 'react-router-dom';
 import { DashboardPage } from './pages/dashboard';
+import { CategoryPage } from './pages/category/category';
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/categories',
-        element: <></>
+        element: <CategoryPage />
       },
       {
         path: '/organizations',
