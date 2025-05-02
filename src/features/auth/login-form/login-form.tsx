@@ -4,7 +4,7 @@ import { useForm } from '@mantine/form'
 import { PatternFormat } from 'react-number-format'
 import { useNavigate } from 'react-router-dom'
 import styles from './login-form.module.css'
-
+import { useLoginMutation } from '../queries/auth-queries'
 interface LoginFormValues {
     phone: string
     password: string
@@ -14,6 +14,7 @@ export const LoginForm = () => {
     const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
+    const { mutate: login, isPending } = useLoginMutation()
 
     const form = useForm<LoginFormValues>({
         initialValues: {
@@ -39,11 +40,8 @@ export const LoginForm = () => {
             setIsLoading(true)
             setError(null)
 
-            // TODO: Replace this with your actual login API call
             if (values.phone && values.password) {
-                // Simulating successful login
-                localStorage.setItem('token', 'dummy_token')
-                navigate('/dashboard')
+                login({ phone: `998${values.phone}`, password: values.password })
             } else {
                 throw new Error('Invalid credentials')
             }
