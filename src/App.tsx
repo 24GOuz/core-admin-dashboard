@@ -4,12 +4,17 @@ import { MantineProvider } from '@mantine/core';
 import { Router } from './Router';
 import { theme } from './theme';
 import { ModalsProvider } from '@mantine/modals';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient()
 
 export default function App() {
   return (
     <MantineProvider theme={theme}>
       <ModalsProvider>
-        <Router />
+        <QueryClientProvider client={queryClient}>
+          <Router />
+        </QueryClientProvider>
       </ModalsProvider>
     </MantineProvider>
   );
