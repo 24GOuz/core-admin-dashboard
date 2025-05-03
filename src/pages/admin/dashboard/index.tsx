@@ -1,6 +1,6 @@
 import { Stack } from '@mantine/core'
 import { Titles } from '@/components/titles/titles'
-import Map from '@/features/dashboard/leaflet/map'
+import Map from '@/features/admin/dashboard/leaflet/map'
 
 export const DashboardPage = () => {
     return (

@@ -1,5 +1,5 @@
 import { http } from "@/shared/http/http"
-import { IResponse } from "@/shared/types"
+import { IResponse } from "@/shared/types/http"
 import { LoginResponse, User } from "../types"
 
 export const authApi = {

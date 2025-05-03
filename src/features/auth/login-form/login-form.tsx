@@ -12,9 +12,7 @@ interface LoginFormValues {
 
 export const LoginForm = () => {
     const navigate = useNavigate()
-    const [isLoading, setIsLoading] = useState(false)
-    const [error, setError] = useState<string | null>(null)
-    const { mutate: login, isPending } = useLoginMutation()
+    const { mutate: login, isPending, isError, error } = useLoginMutation()
 
     const form = useForm<LoginFormValues>({
         initialValues: {
@@ -36,29 +34,22 @@ export const LoginForm = () => {
     })
 
     const handleSubmit = async (values: LoginFormValues) => {
-        try {
-            setIsLoading(true)
-            setError(null)
 
-            if (values.phone && values.password) {
-                login({ phone: `998${values.phone}`, password: values.password })
-            } else {
-                throw new Error('Invalid credentials')
-            }
-        } catch (err) {
-            setError('Login failed. Please try again.')
-        } finally {
-            setIsLoading(false)
+        if (values.phone && values.password) {
+            login({ phone: `998${values.phone}`, password: values.password })
+        } else {
+            throw new Error('Invalid credentials')
         }
+
     }
 
     return (
         <div className={styles.container}>
             <form onSubmit={form.onSubmit(handleSubmit)} className={styles.form}>
                 <Title order={2} c="black">Login</Title>
-                {error && (
+                {isError && (
                     <Alert color="red" mt={16} mb={16}>
-                        {error}
+                        {error?.message}
                     </Alert>
                 )}
                 <Stack gap={20}>
@@ -87,7 +78,7 @@ export const LoginForm = () => {
                     />
                 </Stack>
                 <Button
-                    loading={isLoading}
+                    loading={isPending}
                     type="submit"
                     fullWidth
                     variant="filled"

@@ -1,9 +1,9 @@
 import { Titles } from "@/components/titles/titles";
 import { Stack } from "@mantine/core";
-import { CategoryContent } from "@/features/category/ui";
 import { openModal } from "@mantine/modals";
+import { LanguageContent } from "@/features/admin/language/ui/language-content";
 
-export const CategoryPage = () => {
+export const LanguagesPage = () => {
 
     const create = () => {
         openModal({ children: <div>Create</div>, title: 'Create' })
@@ -11,8 +11,8 @@ export const CategoryPage = () => {
 
     return (
         <Stack gap={16}>
-            <Titles title="Category" open={create} />
-            <CategoryContent />
+            <Titles title="Languages" open={create} />
+            <LanguagesContent />
         </Stack>
     );
 }

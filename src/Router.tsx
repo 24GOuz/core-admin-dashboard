@@ -3,10 +3,11 @@ import LoginPage from './pages/auth';
 import { UsersPage } from './pages/users';
 import { MainLayout } from './shared/layouts/main-layout/main-layout';
 import { Outlet } from 'react-router-dom';
-import { DashboardPage } from './pages/dashboard';
-import { CategoryPage } from './pages/category/category';
+import { DashboardPage } from './pages/admin/dashboard';
+import { CategoryPage } from './pages/admin/category/category';
 import { useGetMeQuery } from './features/auth/queries/auth-queries';
 import CustomLoader from './shared/ui/loader';
+import { BusinessTypePage } from './pages/admin/business-type/business-type';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { data: user, isLoading } = useGetMeQuery()
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: '/users',
         element: <UsersPage />
+      },
+      {
+        path: '/business-types',
+        element: <BusinessTypePage />
       },
       {
         path: '/categories',
