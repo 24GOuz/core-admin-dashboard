@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import Cookies from "js-cookie"
 import { COOKIES } from "@/shared/constants"
 import { LoginResponse } from "../types"
-import { IResponse } from "@/shared/types"
+import { IResponse } from "@/shared/types/http"
 import { notifications } from "@mantine/notifications"
 
 

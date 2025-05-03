@@ -1,45 +1,57 @@
 import { Box, NavLink, Text } from '@mantine/core'
-import { FaHome, FaUsers, FaBox, FaBuilding, FaUser, FaUserTie, FaTruck } from 'react-icons/fa'
+import { FaHome, FaUsers, FaBox, FaBuilding, FaUser, FaUserTie, FaTruck, FaBacteria, FaLanguage } from 'react-icons/fa'
 import { useNavigate, useLocation } from 'react-router-dom'
 import styles from './navbar.module.css'
+import { ROUTES } from '../../../constants/routes'
+
+
+const navItems = [
+    {
+        label: 'Dashboard',
+        icon: <FaHome size={20} />,
+        path: ROUTES.home
+    },
+    {
+        label: 'Categories',
+        icon: <FaBox size={20} />,
+        path: ROUTES.categories
+    },
+    {
+        label: 'Business Types',
+        icon: <FaBacteria size={20} />,
+        path: ROUTES.businessTypes
+    },
+    {
+        label: 'Organizations',
+        icon: <FaBuilding size={20} />,
+        path: ROUTES.organizations
+    },
+    {
+        label: 'Users',
+        icon: <FaUsers size={20} />,
+        path: ROUTES.users
+    },
+    {
+        label: 'Clients',
+        icon: <FaUser size={20} />,
+        path: ROUTES.clients
+    },
+    {
+        label: 'Couriers',
+        icon: <FaTruck size={20} />,
+        path: ROUTES.couriers
+    },
+    {
+        label: 'Languages',
+        icon: <FaLanguage size={20} />,
+        path: ROUTES.languages
+    }
+]
 
 export const Navbar = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const currentPath = location.pathname
-
-    const navItems = [
-        {
-            label: 'Dashboard',
-            icon: <FaHome size={20} />,
-            path: '/dashboard'
-        },
-        {
-            label: 'Categories',
-            icon: <FaBox size={20} />,
-            path: '/categories'
-        },
-        {
-            label: 'Organizations',
-            icon: <FaBuilding size={20} />,
-            path: '/organizations'
-        },
-        {
-            label: 'Users',
-            icon: <FaUsers size={20} />,
-            path: '/users'
-        },
-        {
-            label: 'Clients',
-            icon: <FaUser size={20} />,
-            path: '/clients'
-        },
-        {
-            label: 'Couriers',
-            icon: <FaTruck size={20} />,
-            path: '/couriers'
-        }
-    ]
 
     return (
         <Box className={styles.navbar}>
