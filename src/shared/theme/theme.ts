@@ -19,7 +19,7 @@ import selectClasses from './select.module.css'
 import { DateInput, DateTimePicker, YearPickerInput } from '@mantine/dates'
 
 export const theme = createTheme({
-  fontFamily: 'Inter, san serif',
+  // fontFamily: 'Inter, san serif',
   breakpoints: {
     xs: '0', // 0px
     sm: '30em', // 480px

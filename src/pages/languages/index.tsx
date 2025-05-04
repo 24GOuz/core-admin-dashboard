@@ -1,18 +1,19 @@
 import { Titles } from "@/components/titles/titles";
-import { UserContent } from "@/features/users/ui/user-content";
+import { Create } from "@/features/language/ui/create";
+import { LanguageContent } from "@/features/language/ui/language-content";
 import { Stack } from "@mantine/core";
 import { openModal } from "@mantine/modals";
 
-export const UsersPage = () => {
+export const LanguagesPage = () => {
 
     const create = () => {
-        // openModal({ children: <Create />, title: 'Create User' })
+        openModal({ children: <Create />, title: 'Create Language' })
     }
 
     return (
         <Stack gap={16}>
             <Titles title="Languages" open={create} />
-            <UserContent />
+            <LanguageContent />
         </Stack>
     );
 }
