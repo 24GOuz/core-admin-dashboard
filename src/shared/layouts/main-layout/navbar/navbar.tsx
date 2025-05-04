@@ -9,7 +9,7 @@ const navItems = [
     {
         label: 'Dashboard',
         icon: <FaHome size={20} />,
-        path: ROUTES.home
+        path: ROUTES.dashboard
     },
     {
         label: 'Categories',

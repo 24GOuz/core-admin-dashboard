@@ -2,19 +2,18 @@ import '@mantine/core/styles.css';
 
 import { MantineProvider } from '@mantine/core';
 import { Router } from './Router';
-import { theme } from './theme';
 import { ModalsProvider } from '@mantine/modals';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from './shared/query-client/query-client';
-
+import { theme } from './shared/theme/theme';
 export default function App() {
   return (
-    <MantineProvider theme={theme}>
-      <ModalsProvider>
-        <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <MantineProvider theme={theme}>
+        <ModalsProvider>
           <Router />
-        </QueryClientProvider>
-      </ModalsProvider>
-    </MantineProvider>
+        </ModalsProvider>
+      </MantineProvider>
+    </QueryClientProvider>
   );
 }

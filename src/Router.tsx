@@ -3,11 +3,13 @@ import LoginPage from './pages/auth';
 import { UsersPage } from './pages/users';
 import { MainLayout } from './shared/layouts/main-layout/main-layout';
 import { Outlet } from 'react-router-dom';
-import { DashboardPage } from './pages/admin/dashboard';
-import { CategoryPage } from './pages/admin/category/category';
+import { DashboardPage } from './pages/dashboard';
+import { CategoryPage } from './pages/category/category';
 import { useGetMeQuery } from './features/auth/queries/auth-queries';
 import CustomLoader from './shared/ui/loader';
-import { BusinessTypePage } from './pages/admin/business-type/business-type';
+import { BusinessTypePage } from './pages/business-type/business-type';
+import { LanguagesPage } from './pages/languages';
+import { ROUTES } from './shared/constants/routes';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { data: user, isLoading } = useGetMeQuery()
@@ -30,31 +32,35 @@ const router = createBrowserRouter([
     element: <ProtectedRoute><MainLayout><Outlet /></MainLayout></ProtectedRoute>,
     children: [
       {
-        path: '/dashboard',
+        path: ROUTES.dashboard,
         element: <DashboardPage />
       },
       {
-        path: '/users',
+        path: ROUTES.users,
         element: <UsersPage />
       },
       {
-        path: '/business-types',
+        path: ROUTES.businessTypes,
         element: <BusinessTypePage />
       },
       {
-        path: '/categories',
+        path: ROUTES.languages,
+        element: <LanguagesPage />
+      },
+      {
+        path: ROUTES.categories,
         element: <CategoryPage />
       },
       {
-        path: '/organizations',
+        path: ROUTES.organizations,
         element: <></>
       },
       {
-        path: '/clients',
+        path: ROUTES.clients,
         element: <></>
       },
       {
-        path: '/couriers',
+        path: ROUTES.couriers,
         element: <></>
       },
     ]
