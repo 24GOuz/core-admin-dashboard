@@ -10,7 +10,7 @@ export const Edit: React.FC<EditProps> = ({ id = 0 }) => {
     return (
         <Stack gap={0}>
             {true && <ErrorAlert>This is error</ErrorAlert>}
-            <LanguageForm
+            {/* <LanguageForm
                 initialState={{
                     icon: 'language.data.icon',
                     locale: 'language.data.locale',
@@ -19,7 +19,7 @@ export const Edit: React.FC<EditProps> = ({ id = 0 }) => {
                 submitFn={() => { }}
                 loading={false}
                 title={'Edit'}
-            />
+            /> */}
         </Stack>
     )
 }
