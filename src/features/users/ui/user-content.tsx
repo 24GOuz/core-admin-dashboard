@@ -6,6 +6,8 @@ import { Edit } from './edit'
 import { DeleteModal } from '@/components/delete-modal/delete-modal'
 import { useFetchUsers } from '../queries'
 import { useListParams } from '@/shared/hooks/useParams'
+import { Role } from '@/shared/types/global'
+import dayjs from 'dayjs'
 
 export const UserContent = () => {
     const {
@@ -28,29 +30,43 @@ export const UserContent = () => {
 
     const columns = useMemo(
         () => [
+            { accessorKey: 'id', header: 'ID', size: 50 },
+            { accessorKey: 'name', header: 'Name', size: 150 },
+            { accessorKey: 'surname', header: 'Surname', size: 150 },
+            { accessorKey: 'telegramId', header: 'Telegram ID' },
             {
-                accessorKey: 'id',
-                header: 'ID',
-                size: 50,
+                accessorKey: 'birthday',
+                header: 'Birthday',
+                cell: ({ getValue }: { getValue: () => string }) => dayjs(getValue()).format('YYYY-MM-DD'),
+            },
+            { accessorKey: 'gender', header: 'Gender' },
+            { accessorKey: 'avatar', header: 'Avatar URL' },
+            { accessorKey: 'phone', header: 'Phone' },
+            { accessorKey: 'password', header: 'Password', enableSorting: false },
+            { accessorKey: 'email', header: 'Email' },
+            {
+                accessorKey: 'roles',
+                header: 'Roles',
+                cell: ({ getValue }: { getValue: () => any }) => {
+                    const roles = getValue();
+                    return Array.isArray(roles) ? roles.map(r => r.name || r).join(', ') : '';
+                },
+            },
+            { accessorKey: 'isActive', header: 'Is Active', enableSorting: false },
+            { accessorKey: 'isVerified', header: 'Is Verified' },
+            {
+                accessorKey: 'createdAt',
+                header: 'Created At',
+                cell: ({ getValue }: { getValue: () => string }) => dayjs(getValue()).format('YYYY-MM-DD HH:mm'),
             },
             {
-                accessorKey: 'name',
-                header: 'Name',
-                size: 350,
-            },
-            {
-                accessorKey: 'letter_code',
-                header: 'Letter Code',
-            },
-            {
-                accessorKey: 'is_active',
-                header: 'Is Active',
-                enableSorting: false,
+                accessorKey: 'updatedAt',
+                header: 'Updated At',
+                cell: ({ getValue }: { getValue: () => string }) => dayjs(getValue()).format('YYYY-MM-DD HH:mm'),
             },
         ],
         [data],
     )
-
     const editM = (id: number) => {
         openModal({
             children: <Edit id={id} />,
