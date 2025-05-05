@@ -34,6 +34,7 @@ export const UserContent = () => {
             { accessorKey: 'name', header: 'Name', size: 150 },
             { accessorKey: 'surname', header: 'Surname', size: 150 },
             { accessorKey: 'telegramId', header: 'Telegram ID' },
+            { accessorKey: 'phone', header: 'Phone' },
             {
                 accessorKey: 'birthday',
                 header: 'Birthday',
@@ -41,15 +42,13 @@ export const UserContent = () => {
             },
             { accessorKey: 'gender', header: 'Gender' },
             { accessorKey: 'avatar', header: 'Avatar URL' },
-            { accessorKey: 'phone', header: 'Phone' },
-            { accessorKey: 'password', header: 'Password', enableSorting: false },
             { accessorKey: 'email', header: 'Email' },
             {
                 accessorKey: 'roles',
                 header: 'Roles',
                 cell: ({ getValue }: { getValue: () => any }) => {
                     const roles = getValue();
-                    return Array.isArray(roles) ? roles.map(r => r.name || r).join(', ') : '';
+                    return Array.isArray(roles) ? roles.map(r => r.name || r).join(',') : '';
                 },
             },
             { accessorKey: 'isActive', header: 'Is Active', enableSorting: false },

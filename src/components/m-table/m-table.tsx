@@ -114,7 +114,12 @@ export const MTable = <TData extends MRT_RowData>({
                         border: '1px dashed #e0e0e0',
                     },
                 }}
-                mantineTableContainerProps={{ style: { flexGrow: '1' } }}
+                mantineTableContainerProps={{
+                    style: {
+                        flexGrow: '1',
+                        overflowX: 'auto',
+                    }
+                }}
                 mantineTableFooterProps={{ style: { flexGrow: '0' } }}
                 mantinePaginationProps={{
                     color: 'var(--mantine-color-blue-6)',
