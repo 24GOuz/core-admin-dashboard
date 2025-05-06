@@ -1,12 +1,10 @@
-import { MRT_ColumnDef } from 'mantine-react-table'
 import { useMemo } from 'react'
 import { MTable } from '@/components/m-table/m-table'
 import { openModal } from '@mantine/modals'
 import { Edit } from './edit'
 import { DeleteModal } from '@/components/delete-modal/delete-modal'
-import { useFetchUsers } from '../queries'
+import { useDeleteUser, useFetchUsers } from '../queries'
 import { useListParams } from '@/shared/hooks/useParams'
-import { Role } from '@/shared/types/global'
 import dayjs from 'dayjs'
 
 export const UserContent = () => {
@@ -20,7 +18,8 @@ export const UserContent = () => {
         sort,
         sorting,
     } = useListParams()
-    const { data } = useFetchUsers({
+    const { mutateAsync: deleteUser } = useDeleteUser()
+    const { data, isLoading, isError, error } = useFetchUsers({
         page: pagination.pageIndex + 1,
         take: pagination.pageSize,
         keyword: globalFilter || undefined,
@@ -31,18 +30,19 @@ export const UserContent = () => {
     const columns = useMemo(
         () => [
             { accessorKey: 'id', header: 'ID', size: 50 },
-            { accessorKey: 'name', header: 'Name', size: 150 },
-            { accessorKey: 'surname', header: 'Surname', size: 150 },
-            { accessorKey: 'telegramId', header: 'Telegram ID' },
-            { accessorKey: 'phone', header: 'Phone' },
+            { accessorKey: 'name', header: 'Name', size: 100 },
+            { accessorKey: 'surname', header: 'Surname', size: 100 },
+            { accessorKey: 'telegramId', header: 'Telegram ID', size: 100 },
+            { accessorKey: 'phone', header: 'Phone', size: 100 },
             {
                 accessorKey: 'birthday',
                 header: 'Birthday',
                 cell: ({ getValue }: { getValue: () => string }) => dayjs(getValue()).format('YYYY-MM-DD'),
+                size: 100,
             },
-            { accessorKey: 'gender', header: 'Gender' },
-            { accessorKey: 'avatar', header: 'Avatar URL' },
-            { accessorKey: 'email', header: 'Email' },
+            { accessorKey: 'gender', header: 'Gender', size: 100 },
+            { accessorKey: 'avatar', header: 'Avatar URL', size: 100 },
+            { accessorKey: 'email', header: 'Email', size: 100 },
             {
                 accessorKey: 'roles',
                 header: 'Roles',
@@ -50,9 +50,10 @@ export const UserContent = () => {
                     const roles = getValue();
                     return Array.isArray(roles) ? roles.map(r => r.name || r).join(',') : '';
                 },
+                size: 100,
             },
-            { accessorKey: 'isActive', header: 'Is Active', enableSorting: false },
-            { accessorKey: 'isVerified', header: 'Is Verified' },
+            { accessorKey: 'isActive', header: 'Is Active', enableSorting: false, size: 100 },
+            { accessorKey: 'isVerified', header: 'Is Verified', size: 100 },
             {
                 accessorKey: 'createdAt',
                 header: 'Created At',
@@ -75,7 +76,7 @@ export const UserContent = () => {
 
     const deleteM = (id: number) => {
         openModal({
-            children: <DeleteModal id={id} label={'Delete'} onDelete={() => { }} />,
+            children: <DeleteModal id={id} label={'Delete'} onDelete={() => deleteUser(id)} />,
             title: 'Delete',
         })
     }
@@ -86,27 +87,27 @@ export const UserContent = () => {
             columns={columns}
             deleteM={deleteM}
             editM={editM}
-            rowCount={0}
+            rowCount={data?.meta.total || 0}
             onPaginationChange={setPagination}
             state={{
-                isLoading: false,
+                isLoading: isLoading,
                 pagination: {
-                    pageIndex: 0,
-                    pageSize: 10,
+                    pageIndex: pagination.pageIndex,
+                    pageSize: pagination.pageSize,
                 },
-                globalFilter: '',
+                globalFilter: globalFilter,
                 sorting: [],
                 showSkeletons: false,
                 showAlertBanner: false,
             }}
+            errorText={error?.message}
+            isError={isError}
             manualSorting={true}
-            errorText={'this is error'}
-            isError={true}
             manualFiltering={true}
             enableRowActions={true}
-            manualPagination={true}
-            onSortingChange={() => { }}
-            onGlobalFilterChange={() => { }}
+            positionActionsColumn='first'
+            onSortingChange={setSorting}
+            onGlobalFilterChange={setGlobalFilter}
         />
     )
 }

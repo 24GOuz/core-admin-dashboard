@@ -3,8 +3,6 @@ import type { MRT_RowData, MRT_TableOptions } from 'mantine-react-table'
 import { MantineReactTable } from 'mantine-react-table'
 import { HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi'
 import { ErrorAlert } from '../error-alert/error-alert'
-import clsx from 'clsx';
-import classes from './m-table.module.css';
 
 interface TableProps<T extends MRT_RowData> extends MRT_TableOptions<T> {
     isError?: boolean
@@ -112,12 +110,15 @@ export const MTable = <TData extends MRT_RowData>({
                     style: {
                         borderRadius: '0',
                         border: '1px dashed #e0e0e0',
+                        width: '100%',
+                        overflow: 'hidden'
                     },
                 }}
                 mantineTableContainerProps={{
                     style: {
-                        flexGrow: '1',
+                        width: '100%',
                         overflowX: 'auto',
+                        position: 'relative'
                     }
                 }}
                 mantineTableFooterProps={{ style: { flexGrow: '0' } }}

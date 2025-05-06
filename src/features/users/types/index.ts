@@ -5,12 +5,12 @@ export interface User {
     isActive: boolean
     createdAt: string
     updatedAt: string
-    telegramId: string
+    telegramId: number
     name: string
     surname: string
     birthday: string
     gender: string
-    avatar: string
+    avatar?: string
     phone: string
     password: string
     email: string
