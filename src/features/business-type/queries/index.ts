@@ -3,6 +3,8 @@ import { businessTypeApi } from "../api"
 import { BusinessTypeFormBody } from "../types"
 import { FilterParams } from "@/shared/types/filterParams"
 import { notifications } from "@mantine/notifications"
+import { HTTPError, ResponseWithMessage } from "@/shared/types/http"
+import { modals } from "@mantine/modals"
 
 export const useGetBusinessTypesQuery = (params: FilterParams) => {
     return useQuery({
@@ -50,7 +52,7 @@ export const useUpdateBusinessTypeMutation = () => {
 
 export const useDeleteBusinessTypeMutation = () => {
     const queryClient = useQueryClient()
-    return useMutation({
+    return useMutation<ResponseWithMessage, HTTPError, string>({
         mutationFn: businessTypeApi.delete,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['business-types'] })
@@ -58,6 +60,14 @@ export const useDeleteBusinessTypeMutation = () => {
                 title: 'Success',
                 message: 'Business type deleted successfully',
                 color: 'green'
+            })
+            modals.closeAll()
+        },
+        onError: (error) => {
+            notifications.show({
+                title: 'Error',
+                message: error.message,
+                color: 'red'
             })
         }
     })

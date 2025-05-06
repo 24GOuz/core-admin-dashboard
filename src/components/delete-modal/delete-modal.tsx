@@ -5,12 +5,14 @@ type DeleteModalProps<T = number> = {
     id: T
     label: string
     onDelete: (id: T) => void
+    isDeleting?: boolean
 }
 
 export const DeleteModal = <T extends unknown>({
     id,
     onDelete,
     label,
+    isDeleting,
 }: DeleteModalProps<T>) => {
 
     return (
@@ -30,6 +32,7 @@ export const DeleteModal = <T extends unknown>({
                     variant="primary"
                     size="medium"
                     onClick={() => onDelete(id)}
+                    loading={isDeleting}
                 >
                     {'Delete'}
                 </Button>

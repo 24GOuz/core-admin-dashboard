@@ -12,6 +12,7 @@ import {
     Box,
     Divider,
     Checkbox,
+    NumberInput,
 } from '@mantine/core';
 import { modals } from '@mantine/modals';
 import { HiOutlineGlobeAlt, HiOutlineUser, HiOutlineMail, HiOutlinePhone, HiOutlineCake } from 'react-icons/hi';
@@ -19,6 +20,7 @@ import { useForm, isNotEmpty, isEmail, hasLength, matches } from '@mantine/form'
 import { useState } from 'react';
 import { UserFormData } from '../types';
 import { DateInput } from '@mantine/dates';
+import { PatternFormat } from 'react-number-format';
 
 interface UserFormProps {
     submitFn: (values: UserFormData) => void;
@@ -29,7 +31,7 @@ interface UserFormProps {
 
 const INITIAL_STATE: UserFormData = {
     isActive: true,
-    telegramId: '',
+    telegramId: 0,
     name: '',
     surname: '',
     birthday: '',
@@ -53,7 +55,7 @@ export const UserForm: React.FC<UserFormProps> = ({
     const form = useForm<UserFormData>({
         initialValues: {
             isActive: initialState.isActive || true,
-            telegramId: initialState.telegramId || '',
+            telegramId: initialState.telegramId || 0,
             name: initialState.name || '',
             surname: initialState.surname || '',
             birthday: initialState.birthday || '',
@@ -71,7 +73,7 @@ export const UserForm: React.FC<UserFormProps> = ({
             surname: isNotEmpty('Surname is required'),
             birthday: isNotEmpty('Birthday is required'),
             gender: isNotEmpty('Gender is required'),
-            phone: matches(/^\+?[0-9]{10,15}$/, 'Please enter a valid phone number'),
+            phone: isNotEmpty('Phone is required'),
             password: hasLength({ min: 8 }, 'Password must be at least 8 characters'),
             email: isEmail('Invalid email'),
         },
@@ -96,11 +98,12 @@ export const UserForm: React.FC<UserFormProps> = ({
     };
 
     const handleSubmit = (values: UserFormData) => {
-        submitFn(values);
+        const { avatar, ...rest } = values
+        submitFn({ ...rest, telegramId: Number(values.telegramId) })
     }
 
     return (
-        <Box p="md">
+        <Box>
             <form onSubmit={form.onSubmit(handleSubmit)}>
                 <Stack>
                     <Text size="xl" fw={700}>{title || 'User Registration'}</Text>
@@ -130,6 +133,7 @@ export const UserForm: React.FC<UserFormProps> = ({
                                 leftSection={<HiOutlineCake size={16} />}
                                 required
                                 value={form.values.birthday ? new Date(form.values.birthday) : null}
+                                minDate={new Date('1900-01-01')}
                                 onChange={(date) => form.setFieldValue('birthday', date ? date.toISOString() : '')}
                                 error={form.errors.birthday}
                             />
@@ -146,12 +150,21 @@ export const UserForm: React.FC<UserFormProps> = ({
                                 {...form.getInputProps('gender')}
                             />
 
-                            <TextInput
-                                label="Phone"
-                                placeholder="+1234567890"
-                                leftSection={<HiOutlinePhone size={16} />}
-                                required
+                            <PatternFormat
+                                format="+998 ## ### ## ##"
+                                mask=" "
+                                allowEmptyFormatting={true}
+                                customInput={TextInput}
+                                label="Phone Number"
+                                placeholder="Enter your phone number"
+                                autoFocus
+                                size="md"
+                                radius="md"
                                 {...form.getInputProps('phone')}
+                                onValueChange={(values) => {
+                                    form.setFieldValue('phone', values.value)
+                                }}
+                                onChange={() => { }}
                             />
                         </Stack>
 
@@ -178,14 +191,15 @@ export const UserForm: React.FC<UserFormProps> = ({
                                 {...form.getInputProps('telegramId')}
                             />
 
-                            {/* <Select
+                            <Select
                                 label="Roles"
                                 placeholder="Select roles"
-                                data={Object.values(Role).map(role => ({ value: role, label: role }))}
+                                data={Object.values(['user', 'admin', 'partner', 'courier']).map(role => ({ value: role, label: role }))}
                                 multiple
-                                value={form.values.roles}
-                                onChange={(value) => form.setFieldValue('roles', value as Role[])}
-                            /> */}
+                                {...form.getInputProps('roles')}
+                            // value={form.values.roles}
+                            // onChange={(value) => form.setFieldValue('roles', value)}
+                            />
 
                             <Group mt="xs">
                                 <Text size="sm">Status</Text>
@@ -205,49 +219,49 @@ export const UserForm: React.FC<UserFormProps> = ({
                             </Group>
                         </Stack>
 
-                        <Stack align="center" style={{ width: 200 }}>
-                            <Text size="sm">Avatar</Text>
-                            {avatarPreview ? (
-                                <Image
-                                    src={avatarPreview}
-                                    alt="Avatar preview"
-                                    width={150}
-                                    height={150}
-                                    radius="md"
-                                />
-                            ) : (
-                                <Box
-                                    style={{
-                                        width: 150,
-                                        height: 150,
-                                        borderRadius: 'md',
-                                        backgroundColor: '#f0f0f0',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                    }}
-                                >
-                                    <Text c="gray.6">No image</Text>
-                                </Box>
-                            )}
-
-                            <FileButton
-                                onChange={handleAvatarChange}
-                                accept="image/svg+xml"
-                                name="avatar"
-                            >
-                                {(props) => (
-                                    <Button {...props} variant="outline">
-                                        Upload SVG
-                                    </Button>
-                                )}
-                            </FileButton>
-
-                            <Text size="xs" c="gray.6">
-                                SVG files only
-                            </Text>
-                        </Stack>
                     </Flex>
+                    <Stack align="center" style={{ width: 200 }}>
+                        <Text size="sm">Avatar</Text>
+                        {avatarPreview ? (
+                            <Image
+                                src={avatarPreview}
+                                alt="Avatar preview"
+                                width={150}
+                                height={150}
+                                radius="md"
+                            />
+                        ) : (
+                            <Box
+                                style={{
+                                    width: 150,
+                                    height: 150,
+                                    borderRadius: 'md',
+                                    backgroundColor: '#f0f0f0',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                }}
+                            >
+                                <Text c="gray.6">No image</Text>
+                            </Box>
+                        )}
+
+                        <FileButton
+                            onChange={handleAvatarChange}
+                            accept="image/svg+xml"
+                            name="avatar"
+                        >
+                            {(props) => (
+                                <Button {...props} variant="outline">
+                                    Upload SVG
+                                </Button>
+                            )}
+                        </FileButton>
+
+                        <Text size="xs" c="gray.6">
+                            SVG files only
+                        </Text>
+                    </Stack>
 
                     <Divider />
 

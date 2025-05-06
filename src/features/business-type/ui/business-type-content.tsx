@@ -1,11 +1,9 @@
-import { MRT_ColumnDef } from 'mantine-react-table'
 import { useMemo } from 'react'
 import { MTable } from '@/components/m-table/m-table'
 import { openModal } from '@mantine/modals'
 import { Edit } from './edit'
 import { DeleteModal } from '@/components/delete-modal/delete-modal'
-import { useGetBusinessTypesQuery } from '../queries'
-import CustomLoader from '@/shared/ui/loader'
+import { useDeleteBusinessTypeMutation, useGetBusinessTypesQuery } from '../queries'
 import { useListParams } from '@/shared/hooks/useParams'
 
 export const BusinessTypeContent = () => {
@@ -19,7 +17,7 @@ export const BusinessTypeContent = () => {
         sort,
         sorting,
     } = useListParams()
-
+    const { mutateAsync: deleteBusinessType, isPending: isDeleting } = useDeleteBusinessTypeMutation()
     const { data, isLoading, isError, error } = useGetBusinessTypesQuery({
         page: pagination.pageIndex + 1,
         take: pagination.pageSize,
@@ -63,13 +61,11 @@ export const BusinessTypeContent = () => {
 
     const deleteM = (id: number) => {
         openModal({
-            children: <DeleteModal id={id} label={'Delete'} onDelete={() => { }} />,
+            children: <DeleteModal id={id} label={'Delete'} onDelete={() => {
+                deleteBusinessType(id.toString())
+            }} isDeleting={isDeleting} />,
             title: 'Delete',
         })
-    }
-
-    if (isLoading) {
-        return <CustomLoader fullScreen />
     }
 
     return (
@@ -77,29 +73,30 @@ export const BusinessTypeContent = () => {
             <MTable
                 data={data?.data || []}
                 columns={columns}
-                deleteM={deleteM}
-                editM={editM}
-                rowCount={data?.length || 0}
-                onPaginationChange={() => { }}
+                manualPagination={true}
+                rowCount={data?.meta.total || 0}
+                onPaginationChange={setPagination}
+                // deleteM={deleteM}
+                // editM={editM}
                 state={{
-                    isLoading: false,
+                    isLoading: isLoading,
                     pagination: {
-                        pageIndex: 0,
-                        pageSize: 10,
+                        pageIndex: pagination.pageIndex,
+                        pageSize: pagination.pageSize,
                     },
-                    globalFilter: '',
-                    sorting: [],
+                    globalFilter: globalFilter,
+                    sorting,
                     showSkeletons: false,
-                    showAlertBanner: false,
                 }}
-                manualSorting={true}
+                enableRowActions={true}
                 errorText={error?.message}
                 isError={isError}
                 manualFiltering={true}
-                enableRowActions={true}
-                manualPagination={true}
-                onSortingChange={() => { }}
-                onGlobalFilterChange={() => { }}
+                manualSorting={true}
+                onSortingChange={setSorting}
+                onGlobalFilterChange={(value) => {
+                    setGlobalFilter(value ?? null)
+                }}
             />
         </>
     )

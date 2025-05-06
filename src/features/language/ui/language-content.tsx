@@ -90,8 +90,8 @@ export const LanguageContent = () => {
       state={{
         isLoading: isFetching,
         pagination: {
-          pageIndex: 1,
-          pageSize: 5,
+          pageIndex: pagination.pageIndex,
+          pageSize: pagination.pageSize,
         },
         globalFilter,
         sorting,

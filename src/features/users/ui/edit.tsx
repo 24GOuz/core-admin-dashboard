@@ -20,7 +20,7 @@ export const Edit: React.FC<EditProps> = ({ id = 0 }) => {
                     phone: 'language.data.phone',
                     email: 'language.data.email',
                     password: 'language.data.password',
-                    telegramId: 'language.data.telegramId',
+                    telegramId: 0,
                     isActive: true,
                     roles: ['user'],
                     isVerified: true,
