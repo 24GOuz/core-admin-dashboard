@@ -16,7 +16,7 @@ export const useFetchUsers = (params: FilterParams) => {
 
 export const useFetchUser = (id: number) => {
     return useQuery<User, HTTPError>({
-        queryKey: ['users', id],
+        queryKey: ['user', id],
         queryFn: () => usersApi.show(id)
     })
 }

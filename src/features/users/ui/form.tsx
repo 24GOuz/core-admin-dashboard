@@ -136,6 +136,11 @@ export const UserForm: React.FC<UserFormProps> = ({
                                 minDate={new Date('1900-01-01')}
                                 onChange={(date) => form.setFieldValue('birthday', date ? date.toISOString() : '')}
                                 error={form.errors.birthday}
+                                styles={{
+                                    input: {
+                                        paddingLeft: 35,
+                                    },
+                                }}
                             />
 
                             <Select
