@@ -85,9 +85,10 @@ export const UserContent = () => {
         <MTable
             data={data?.data || []}
             columns={columns}
+            manualPagination={true}
             deleteM={deleteM}
             editM={editM}
-            rowCount={data?.meta.total || 0}
+            rowCount={data?.meta.total}
             onPaginationChange={setPagination}
             state={{
                 isLoading: isLoading,
