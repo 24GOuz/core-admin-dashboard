@@ -7,4 +7,6 @@ export const ROUTES = {
     clients: '/clients',
     couriers: '/couriers',
     categories: '/categories',
+    countries: '/countries',
+    regions: '/regions',
 }

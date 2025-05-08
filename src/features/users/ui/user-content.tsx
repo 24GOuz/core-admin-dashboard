@@ -12,7 +12,7 @@ export const UserContent = () => {
         pagination,
         setPagination,
         globalFilter,
-        orderby,
+        sortBy,
         setGlobalFilter,
         setSorting,
         sort,
@@ -23,7 +23,7 @@ export const UserContent = () => {
         page: pagination.pageIndex + 1,
         take: pagination.pageSize,
         keyword: globalFilter || undefined,
-        orderby,
+        sortBy,
         sort: sort,
     })
 
@@ -97,7 +97,7 @@ export const UserContent = () => {
                     pageSize: pagination.pageSize,
                 },
                 globalFilter: globalFilter,
-                sorting: [],
+                sorting,
                 showSkeletons: false,
                 showAlertBanner: false,
             }}

@@ -10,6 +10,8 @@ import CustomLoader from './shared/ui/loader';
 import { BusinessTypePage } from './pages/business-type/business-type';
 import { LanguagesPage } from './pages/languages';
 import { ROUTES } from './shared/constants/routes';
+import { CountryPage } from './pages/country';
+import { RegionPage } from './pages/region';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { data: user, isLoading } = useGetMeQuery()
@@ -50,6 +52,14 @@ const router = createBrowserRouter([
       {
         path: ROUTES.categories,
         element: <CategoryPage />
+      },
+      {
+        path: ROUTES.countries,
+        element: <CountryPage />
+      },
+      {
+        path: ROUTES.regions,
+        element: <RegionPage />
       },
       {
         path: ROUTES.organizations,

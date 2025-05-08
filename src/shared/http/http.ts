@@ -36,7 +36,7 @@ http.interceptors.response.use(
           color: 'red',
         })
 
-        window.location.replace('/')
+        // window.location.replace('/')
 
         return Promise.reject({ message: error.response.data.message })
       }

@@ -1,5 +1,5 @@
 import { Stack } from '@mantine/core'
-import { LanguageForm } from './form'
+import { BusinessTypeForm } from './form'
 import { ErrorAlert } from '@/components/error-alert/error-alert'
 
 interface EditProps {
