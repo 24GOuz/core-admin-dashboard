@@ -10,9 +10,7 @@ interface Response {
 type ValidationsError = Record<string, string[] | string>
 
 export interface ILanguage {
-    uz: string
-    kk: string
-    ru: string
+    [key: string]: string
 }
 
 export interface HTTPError extends Response {

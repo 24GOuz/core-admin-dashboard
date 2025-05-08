@@ -18,7 +18,7 @@ export const LanguageContent = () => {
     pagination,
     setPagination,
     globalFilter,
-    orderby,
+    sortBy,
     setGlobalFilter,
     setSorting,
     sort,
@@ -35,8 +35,8 @@ export const LanguageContent = () => {
     page: pagination.pageIndex + 1,
     take: pagination.pageSize,
     keyword: globalFilter || undefined,
-    orderby,
-    sort: sort,
+    sortBy,
+    sort,
   })
   const lang = useGetLanguage()
   const columns: MRT_ColumnDef<Language>[] = useMemo(

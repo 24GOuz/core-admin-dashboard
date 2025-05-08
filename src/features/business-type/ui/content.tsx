@@ -11,7 +11,7 @@ export const BusinessTypeContent = () => {
         pagination,
         setPagination,
         globalFilter,
-        orderby,
+        sortBy,
         setGlobalFilter,
         setSorting,
         sort,
@@ -22,8 +22,8 @@ export const BusinessTypeContent = () => {
         page: pagination.pageIndex + 1,
         take: pagination.pageSize,
         keyword: globalFilter || undefined,
-        orderby,
-        sort: sort,
+        sortBy,
+        sort,
     })
 
     const columns = useMemo(

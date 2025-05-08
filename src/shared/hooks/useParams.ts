@@ -21,15 +21,15 @@ export const useListParams = (
   const [sorting, setSorting] = useState<MRT_SortingState>(props.sorting)
   const [globalFilter, setGlobalFilter] = useState(props.globalFilter)
 
-  const orderby = sorting.length ? sorting[0].id : undefined
-  const sort: 'desc' | 'asc' | undefined = sorting.length
+  const sortBy = sorting.length ? sorting[0].id : undefined
+  const sort: 'DESC' | 'ASC' | undefined = sorting.length
     ? sorting[0].desc
-      ? 'asc'
-      : 'desc'
+      ? 'DESC'
+      : 'ASC'
     : undefined
 
   return {
-    orderby,
+    sortBy,
     sort,
     sorting,
     setSorting,

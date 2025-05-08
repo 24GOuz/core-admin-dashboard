@@ -2,8 +2,8 @@ export type FilterParams = {
   page?: number
   pageSize?: number
   search?: string | null
-  orderby?: string
-  sort?: 'asc' | 'desc'
+  sortBy?: string
+  sort?: 'ASC' | 'DESC'
   role?: string | unknown
   status?: string
   academic_degree_id?: number

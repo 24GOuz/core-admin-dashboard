@@ -12,6 +12,16 @@ const navItems = [
         path: ROUTES.dashboard
     },
     {
+        label: 'Countries',
+        icon: <FaBox size={20} />,
+        path: ROUTES.countries
+    },
+    {
+        label: 'Regions',
+        icon: <FaBox size={20} />,
+        path: ROUTES.regions
+    },
+    {
         label: 'Categories',
         icon: <FaBox size={20} />,
         path: ROUTES.categories

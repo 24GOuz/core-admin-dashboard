@@ -3,14 +3,12 @@ import { initLanguages } from '@/features/language/lib/init-languages'
 import { Language } from '@/features/language/types/language-types'
 import {
     Button,
-    FileButton,
     Flex,
     Stack,
     Text,
     TextInput,
 } from '@mantine/core'
 import { modals } from '@mantine/modals'
-import { HiOutlineGlobeAlt } from 'react-icons/hi'
 import { BusinessTypeFormBody } from '../types'
 import { isNotEmpty, useForm } from '@mantine/form'
 import { useMainTranslation } from '@/shared/hooks/use-main-translation'
@@ -24,14 +22,14 @@ type FormProps = {
 }
 
 const initialData = (languages: Language[]) => {
-    const base = { uz: '', kk: '', ru: '' }
+    const base = {  }
     return {
         name: { ...base, ...initLanguages(languages, '') },
         description: { ...base, ...initLanguages(languages, '') }
     }
 }
 
-export const LanguageForm: React.FC<FormProps> = withLangs(
+export const BusinessTypeForm: React.FC<FormProps> = withLangs(
     ({
         submitFn,
         loading,
