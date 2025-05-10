@@ -1,1 +1,1 @@
-export * from './user-content'
+export * from './content';

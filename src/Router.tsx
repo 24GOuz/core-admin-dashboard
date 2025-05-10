@@ -12,6 +12,9 @@ import { LanguagesPage } from './pages/languages';
 import { ROUTES } from './shared/constants/routes';
 import { CountryPage } from './pages/country';
 import { RegionPage } from './pages/region';
+import { OrganizationPage } from './pages/organization';
+import { OrganizationCreatePage } from './pages/organization/create';
+import { OrganizationEditPage } from './pages/organization/edit';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { data: user, isLoading } = useGetMeQuery()
@@ -63,7 +66,15 @@ const router = createBrowserRouter([
       },
       {
         path: ROUTES.organizations,
-        element: <></>
+        element: <OrganizationPage />
+      },
+      {
+        path: ROUTES.organizations + '/create',
+        element: <OrganizationCreatePage />
+      },
+      {
+        path: ROUTES.organizations + '/:id/edit',
+        element: <OrganizationEditPage />
       },
       {
         path: ROUTES.clients,

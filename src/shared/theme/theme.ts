@@ -10,13 +10,12 @@ import {
   Select,
   Tabs,
   TextInput,
-} from '@mantine/core'
-
-import buttonClasses from './button.module.css'
-import inputClasses from './input.module.css'
-import tabsClasses from './tabs.module.css'
-import selectClasses from './select.module.css'
-import { DateInput, DateTimePicker, YearPickerInput } from '@mantine/dates'
+} from '@mantine/core';
+import { DateInput, DateTimePicker, YearPickerInput } from '@mantine/dates';
+import buttonClasses from './button.module.css';
+import inputClasses from './input.module.css';
+import selectClasses from './select.module.css';
+import tabsClasses from './tabs.module.css';
 
 export const theme = createTheme({
   // fontFamily: 'Inter, san serif',
@@ -68,7 +67,7 @@ export const theme = createTheme({
               '--button-height': '36px',
               '--button-padding-x': rem(12),
             },
-          }
+          };
         }
         if (props.size === 'medium') {
           return {
@@ -76,7 +75,7 @@ export const theme = createTheme({
               '--button-height': '44px',
               '--button-padding-x': rem(16),
             },
-          }
+          };
         }
 
         if (props.size === 'big') {
@@ -85,10 +84,10 @@ export const theme = createTheme({
               '--button-height': '56px',
               '--button-padding-x': rem(16),
             },
-          }
+          };
         }
 
-        return { root: {} }
+        return { root: {} };
       },
     }),
     ActionIcon: Button.extend({
@@ -104,7 +103,7 @@ export const theme = createTheme({
               '--button-height': '36px',
               '--button-padding-x': rem(12),
             },
-          }
+          };
         }
         if (props.size === 'md') {
           return {
@@ -112,7 +111,7 @@ export const theme = createTheme({
               '--button-height': '44px',
               '--button-padding-x': rem(16),
             },
-          }
+          };
         }
 
         if (props.size === 'lg') {
@@ -121,10 +120,10 @@ export const theme = createTheme({
               '--button-height': '56px',
               '--button-padding-x': rem(16),
             },
-          }
+          };
         }
 
-        return { root: {} }
+        return { root: {} };
       },
     }),
     TextInput: TextInput.extend({
@@ -210,23 +209,11 @@ export const theme = createTheme({
         radius: '8px',
         size: 'md',
       },
-      styles: {
-        input: {
-          minWidth: 42,
-          fontSize: 16,
-          lineHeight: 24,
-          fontWeight: 400,
-          maxHeight: '100%',
-        },
-        label: {
-          fontSize: 14,
-          fontWeight: 600,
-          lineHeight: '20px',
-          color: 'var(--mantine-color-neutral-6)',
-        },
-        error: {
-          fontSize: 12,
-        },
+      classNames: {
+        wrapper: selectClasses.wrapper,
+        input: selectClasses.input,
+        error: selectClasses.error,
+        label: selectClasses.label,
       },
     }),
     PasswordInput: PasswordInput.extend({
@@ -234,21 +221,11 @@ export const theme = createTheme({
         radius: '8px',
         size: 'md',
       },
-      styles: {
-        input: {
-          minWidth: 44,
-          fontSize: 16,
-          lineHeight: 24,
-          fontWeight: 400,
-          maxHeight: '100%',
-          height: '46px',
-        },
-        label: {
-          fontSize: 14,
-          fontWeight: 600,
-          lineHeight: '20px',
-          color: 'var(--mantine-color-neutral-6)',
-        },
+      classNames: {
+        wrapper: inputClasses.wrapper,
+        input: inputClasses.input,
+        error: inputClasses.error,
+        label: inputClasses.label,
       },
     }),
     DateInput: DateInput.extend({
@@ -335,4 +312,4 @@ export const theme = createTheme({
       },
     }),
   },
-})
+});
